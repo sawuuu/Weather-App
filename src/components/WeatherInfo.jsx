@@ -22,7 +22,11 @@ export function WeatherInfo({ temp, wind, humidity }) {
 				<span className={'text-5xl'}>{temperatureIcon}</span>
 				<h2 className={'text-3xl font-semibold'}>{temperatureInfo}</h2>
 			</div>
-			<div className={'g-4 mt-5 flex h-24 w-full justify-around rounded-xl border border-gray-400'}>
+			<div
+				className={
+					'g-4 mt-5 flex min-h-[300px] w-full flex-col justify-around rounded-xl border border-gray-400 sm:min-h-[100px] sm:flex-row'
+				}
+			>
 				<div className={'flex flex-col items-center justify-center gap-2'}>
 					<i className="fa-solid fa-temperature-half ml-2 block text-3xl"></i>
 					<span className={'text-xl font-semibold'}>Temp: {temp}°C</span>{' '}

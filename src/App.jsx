@@ -43,7 +43,7 @@ function App() {
 			<header className={'mt-4'}>
 				<h1 className={'mt-16 text-5xl font-bold text-white'}>Weather App</h1>
 			</header>
-			<main className={'flex h-[400px] w-[500px] flex-col items-center rounded-2xl bg-gray-200 px-4 py-2'}>
+			<main className={'flex h-auto w-[300px] flex-col items-center rounded-2xl bg-gray-200 px-4 py-2 sm:w-[500px]'}>
 				<SearchBar handleSubmit={handleSubmit} handleCityChange={handleCityChange} error={error} />
 				{error && <p className={'text-2xl text-red-500'}>City not found</p>}
 				{temp !== '' && <WeatherInfo temp={temp} wind={wind} humidity={humidity} />}
