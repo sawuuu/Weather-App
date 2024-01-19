@@ -11,6 +11,7 @@ function App() {
 	const [wind, setWind] = useState('');
 	const [humidity, setHumidity] = useState('');
 	const [error, setError] = useState(false);
+	const [loading, setLoading] = useState(false);
 
 	const handleError = () => {
 		setError(true);
@@ -22,6 +23,7 @@ function App() {
 
 	const handleSubmit = event => {
 		event.preventDefault();
+		setLoading(true);
 		setError(false);
 
 		fetch(`${API_URL}?q=${city}&appid=${API_KEY}&units=metric`)
@@ -32,6 +34,7 @@ function App() {
 					setTemp(Math.round(res.main.temp));
 					setWind(Math.round(res.wind.speed));
 					setHumidity(res.main.humidity);
+					setLoading(false);
 				} else {
 					handleError();
 				}
@@ -45,8 +48,12 @@ function App() {
 			</header>
 			<main className={'flex h-auto w-[300px] flex-col items-center rounded-2xl bg-gray-200 px-4 py-2 sm:w-[500px]'}>
 				<SearchBar handleSubmit={handleSubmit} handleCityChange={handleCityChange} error={error} />
+				{loading ? (
+					<p className={'text-2xl'}>Loading...</p>
+				) : (
+					temp !== '' && <WeatherInfo temp={temp} wind={wind} humidity={humidity} />
+				)}
 				{error && <p className={'text-2xl text-red-500'}>City not found</p>}
-				{temp !== '' && <WeatherInfo temp={temp} wind={wind} humidity={humidity} />}
 			</main>
 		</div>
 	);
